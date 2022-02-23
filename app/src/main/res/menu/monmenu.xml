@@ -3,11 +3,10 @@
     <item
         android:id="@+id/menuadd"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="menuadd"
-        app:showAsAction="ifRoom" />
+        android:title="menuadd" />
 
     <item
         android:id="@+id/QUITTER"
-        android:title="@string/QUITTER" />
+        android:title="QUITTER" />
 
 </menu>
