@@ -9,12 +9,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 
-public class accueil extends AppCompatActivity {
+public class Description extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accueil);
+        setContentView(R.layout.activity_description);
 
         Button button = (Button) findViewById(R.id.validerpage);
 
@@ -29,7 +29,7 @@ public class accueil extends AppCompatActivity {
     }
 
     public void retourMain(View c){
-        Intent intent = new Intent(accueil.this, MapsActivity.class);
+        Intent intent = new Intent(Description.this, MapsActivity.class);
         startActivity(intent);
         finish();
     }
