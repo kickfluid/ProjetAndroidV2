@@ -19,5 +19,12 @@ public class Description extends AppCompatActivity {
 
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflaterMenu = getMenuInflater();
+        inflaterMenu.inflate(R.menu.monmenu, menu);
+        return true;
+    }
+
 
 }

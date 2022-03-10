@@ -41,4 +41,16 @@
         app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <ImageButton
+        android:id="@+id/favorite_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#00ffffff"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
