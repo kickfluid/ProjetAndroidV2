@@ -8,8 +8,21 @@
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom"/>
-    <item android:title="Favoris" />
-    <item android:title="Langue" />
-    <item android:title="Quitter" />
+
+    <item
+        android:id="@+id/acc"
+        android:title="Accueil" />
+
+    <item
+        android:id="@+id/fav"
+        android:title="Favoris" />
+    <item
+        android:id="@+id/lang"
+        android:title="Langue" />
+    <item
+        android:id="@+id/quit"
+        android:title="Quitter" />
+
+
 
 </menu>
