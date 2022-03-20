@@ -6,6 +6,7 @@ import static com.example.projetandroid.DatabaseHelper.TABLE_NAME;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.annotation.SuppressLint;
 import android.content.Entity;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 
 public class Favoris extends AppCompatActivity {
 
+
+    private SearchView searchView;
     private SQLiteDatabase dataBase;
 
     //variables to hold staff records
@@ -44,6 +47,7 @@ public class Favoris extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grillebis);
+
         myDb = new DatabaseHelper(this);
         userList = (ListView) findViewById(R.id.edittext);
         TextView text1 = (TextView) findViewById(R.id.txtstafid);

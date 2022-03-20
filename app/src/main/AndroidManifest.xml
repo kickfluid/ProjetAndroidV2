@@ -27,10 +27,6 @@
         <activity
             android:name=".Favoris"
             android:exported="true" />
-        <activity
-            android:name=".Langues"
-            android:exported="true"
-            tools:ignore="DuplicateActivity" />
 
 
         <!--
