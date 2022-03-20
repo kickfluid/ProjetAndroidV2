@@ -3,6 +3,9 @@ package com.example.projetandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,7 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class accueil extends AppCompatActivity {
+public class accueil extends AppCompatActivity  {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,15 @@ public class accueil extends AppCompatActivity {
                 accueil.this.startActivity(myIntent);
                 break;
 
+                case R.id.map:
+                Intent myMap = new Intent(accueil.this, MapsActivity.class);
+
+                accueil.this.startActivity(myMap);
+                break;
+
         }
         return true;
     }
+
+
 }
