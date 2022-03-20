@@ -1,5 +1,8 @@
 package com.example.projetandroid;
 
+import static com.example.projetandroid.DatabaseHelper.DATABASE_NAME;
+import static com.example.projetandroid.DatabaseHelper.TABLE_NAME;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -9,12 +12,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import com.google.android.gms.location.LocationRequest;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,6 +55,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     Button btLocation;
 
+    DatabaseHelper db;
 
 
     SupportMapFragment supportMapFragment;
@@ -208,10 +215,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+
+        db = new DatabaseHelper(this);
+
         // Add a marker in Revel
+        for(int i = 1; i <= db.getCount() ;i++){
+            Float lat = db.getLatitude(i);
+            Float lon = db.getLongitude(i);
+            String titre = db.getTitre(i);
+            LatLng marche = new LatLng(lat, lon);
+            googleMap.addMarker(new MarkerOptions().position(marche).title(titre));
+        }
+
+        LatLng revel = new LatLng(43.45881182779149, 2.0043551872326795);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(revel, 10));
+        /*
         LatLng revel = new LatLng(43.45881182779149, 2.0043551872326795);
         googleMap.addMarker(new MarkerOptions().position(revel).title("Marché de Revel"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(revel, 15));
+
+
+         */
 
     }
 

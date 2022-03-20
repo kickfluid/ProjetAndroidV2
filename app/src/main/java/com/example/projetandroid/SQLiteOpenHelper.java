@@ -70,6 +70,84 @@ class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID=?", new String[] {id});
     }
+
+
+    public int getCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        int nb;
+
+        String sQuery = "select count(*) from " + TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(sQuery,null);
+
+        if (cursor.moveToFirst()){
+            nb =cursor.getInt(0);
+        } else {
+            nb = 0;
+        }
+
+        db.close();
+        return nb;
+    }
+
+
+
+//    public Integer getCount() {
+//        String countQuery = "SELECT * FROM " + TABLE_NAME;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(countQuery, null);
+//        cursor.close();
+//
+//        // return count
+//        return cursor.getCount();
+//    }
+
+    public Float getLatitude(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] {COL_5}, COL_1 + "=?", new String[] { String.valueOf(id)},null,null,null,null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Float lat = cursor.getFloat(0);
+
+        return lat;
+
+        //Cursor cursor = db.rawQuery("SELECT  latittude FROM " + TABLE_NAME + " WHERE ID = ?", new String[]{String.valueOf(id)});
+        //cursor.close();
+
+    }
+
+    public Float getLongitude(int id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] {COL_6}, COL_1 + "=?", new String[] { String.valueOf(id)},null,null,null,null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Float lon = cursor.getFloat(0);
+
+        return lon;
+    }
+
+    public String getTitre(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] {COL_2}, COL_1 + "=?", new String[] { String.valueOf(id)},null,null,null,null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String nom = cursor.getString(0);
+
+        return nom;
+    }
+
+
  /* public boolean deleteData(int id){
  //SQLiteDatabase db =this.getWritableDatabase();
  //return db.delete(TABLE_NAME, "ID = ?", new String[] {id});
