@@ -11,21 +11,21 @@
 
     <item
         android:id="@+id/acc"
-        android:title="Accueil" />
+        android:title="@string/acc" />
 
     <item
         android:id="@+id/map"
-        android:title="Carte" />
+        android:title="@string/map" />
 
     <item
         android:id="@+id/fav"
-        android:title="Favoris" />
+        android:title="@string/fav" />
     <item
         android:id="@+id/lang"
-        android:title="Langue" />
+        android:title="@string/lang" />
     <item
         android:id="@+id/quit"
-        android:title="Quitter" />
+        android:title="@string/quit" />
 
 
 

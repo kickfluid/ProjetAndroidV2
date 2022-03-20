@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="212dp"
-        android:text="Boucher"
+        android:text="@string/checkboxacc"
         app:layout_constraintBottom_toTopOf="@+id/dateMarch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"

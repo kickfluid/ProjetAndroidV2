@@ -5,5 +5,10 @@
     <string name="language">Salut</string>
     <string name="phrase_intro">Cette page sert uniquement au changement de langage </string>
     <string name="phrase_acc">Afficher les marchés qu\'ils soient favoris ou pas</string>
-
+    <string name="checkboxacc">Afficher seulement les favoris</string>
+    <string name="acc">Accueil</string>
+    <string name="map">Carte</string>
+    <string name="fav">Favoris</string>
+    <string name="lang">Langue</string>
+    <string name="quit">Quitter</string>
 </resources>
