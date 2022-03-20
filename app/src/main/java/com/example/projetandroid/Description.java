@@ -1,7 +1,12 @@
 package com.example.projetandroid;
 
+import static com.example.projetandroid.DatabaseHelper.COL_2;
+import static com.example.projetandroid.DatabaseHelper.COL_3;
+import static com.example.projetandroid.DatabaseHelper.TABLE_NAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,6 +37,7 @@ public class Description extends AppCompatActivity {
     TextView textId;
     TextView textedesc;
     Cursor res;
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +46,11 @@ public class Description extends AppCompatActivity {
         ImageButton fav = (ImageButton) findViewById(R.id.favoris);
         textId = (TextView)findViewById(R.id.titredesc);
         textedesc= (TextView)findViewById(R.id.texteDEsc);
-        res= myDb.affichageAP((String) textId.getText().toString());
-        StringBuffer buffer = new StringBuffer();
+        SQLiteDatabase db = myDb.getReadableDatabase();
+        res= myDb.affichageAP(textId.getText().toString());
         res.moveToFirst();
-        while (res.moveToNext()) {
-            buffer.append(res.getString(0) + "\n");
-        }
-        textedesc.setText(buffer);
+        textedesc.setText(res.getString(0));
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

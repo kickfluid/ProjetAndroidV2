@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-
-
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,9 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class accueil extends AppCompat  {
+public class Langues extends AppCompat {
     TextView messageView;
     Button btnAng, btnFran;
     Context context;
@@ -26,32 +22,32 @@ public class accueil extends AppCompat  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accueil);
-        Button button = (Button) findViewById(R.id.validerpage);
-
+        setContentView(R.layout.language);
+        LanguageManager lang=new LanguageManager(this);
         // referencing the text and button views
-        messageView = (TextView) findViewById(R.id.Accueil);
+        messageView = (TextView) findViewById(R.id.textView);
+        btnAng = findViewById(R.id.Ang);
+        btnFran = findViewById(R.id.Fran);
 
         // setting up on click listener event over the button
         // in order to change the language with the help of
         // LocaleHelper class
-
-
-
-        button.setOnClickListener(new View.OnClickListener() {
+        btnAng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                retourMain(view);
-
+                lang.updateResource("en");
+                recreate();
             }
         });
-    }
 
-    public void retourMain(View c){
-        Intent intent = new Intent(accueil.this, MapsActivity.class);
-        startActivity(intent);
-        finish();
+        btnFran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lang.updateResource("fr");
+                recreate();
+            }
+        });
+
     }
 
     @Override
@@ -60,30 +56,25 @@ public class accueil extends AppCompat  {
         inflaterMenu.inflate(R.menu.monmenu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item1) {
         switch (item1.getItemId()) {
             case R.id.fav:
-                Intent myIntent = new Intent(accueil.this, Favoris.class);
-                accueil.this.startActivity(myIntent);
+                Intent myIntent = new Intent(Langues.this, Favoris.class);
+                Langues.this.startActivity(myIntent);
                 break;
 
-                case R.id.map:
-                Intent myMap = new Intent(accueil.this, MapsActivity.class);
-
-                accueil.this.startActivity(myMap);
+            case R.id.acc:
+                Intent myacc = new Intent(Langues.this, accueil.class);
+                Langues.this.startActivity(myacc);
                 break;
 
-            case R.id.lang:
-                Intent mylang = new Intent(accueil.this, Langues.class);
+            case R.id.map:
+                Intent mymap = new Intent(Langues.this, MapsActivity.class);
 
-                accueil.this.startActivity(mylang);
+                Langues.this.startActivity(mymap);
                 break;
-
         }
         return true;
     }
-
-
 }

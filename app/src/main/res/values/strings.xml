@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ProjetAndroid</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps" translatable="false">MapsActivity</string>
+    <string name="selected_language">Francais</string>
+    <string name="language">Salut</string>
+    <string name="phrase_intro">Cette page sert uniquement au changement de langage </string>
+    <string name="phrase_acc">Afficher les marchés qu\'ils soient favoris ou pas</string>
+
 </resources>

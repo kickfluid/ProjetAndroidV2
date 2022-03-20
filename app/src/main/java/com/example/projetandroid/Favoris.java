@@ -8,17 +8,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Entity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
@@ -33,13 +37,7 @@ public class Favoris extends AppCompatActivity {
     private ListView userList;
     private AlertDialog.Builder build;
     DatabaseHelper myDb;
-    EditText editName,editSurname,editMarks ,editTextId;
-    Button btnAddData;
-    Button btnviewAll;
-    Button btnDelete;
-    Button btnviewUpdate;
-    public static AbstractCollection<String> arrayList;
-    private View baseView;
+
     public static final String TAG = "MainActivity:LOG";
 //ee
     @Override
@@ -48,6 +46,7 @@ public class Favoris extends AppCompatActivity {
         setContentView(R.layout.grillebis);
         myDb = new DatabaseHelper(this);
         userList = (ListView) findViewById(R.id.edittext);
+        TextView text1 = (TextView) findViewById(R.id.txtstafid);
 
         DatabaseHelper handler = new DatabaseHelper(this);
         // Get access to the underlying writeable database
@@ -63,7 +62,15 @@ public class Favoris extends AppCompatActivity {
 
         todoAdapter.changeCursor(todoCursor);
         todoAdapter.notifyDataSetChanged();
+
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
+
 
 
 

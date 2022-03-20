@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProjetAndroid</string>
+    <string name="selected_language">English</string>
+    <string name="language">Hi, GFG</string>
+    <string name="phrase_intro">This page is only used to change the language </string>
+    <string name="phrase_acc">Display the markets whether they are favorites or not</string>
+</resources>

@@ -46,9 +46,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
     public Cursor affichageAP(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String selectquery=String.format("select %s from %s  where %s = ?",COL_3,TABLE_NAME,COL_2);
-        Cursor res= db.rawQuery(selectquery,new String[] {id});
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = db.rawQuery("SELECT "+ COL_3+ " FROM " + TABLE_NAME + " WHERE Nom = ?", new String[]{"Revel"});
         return res;
     }
 
