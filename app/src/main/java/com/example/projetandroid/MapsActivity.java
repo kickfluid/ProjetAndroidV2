@@ -3,9 +3,12 @@ package com.example.projetandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -59,4 +62,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         inflaterMenu.inflate(R.menu.monmenu, menu);
         return true;
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item1) {
+        switch (item1.getItemId()) {
+            case R.id.fav:
+                Intent myIntent = new Intent(MapsActivity.this, Favoris.class);
+
+                MapsActivity.this.startActivity(myIntent);
+                break;
+
+            case R.id.acc:
+                Intent myacc = new Intent(MapsActivity.this, accueil.class);
+                MapsActivity.this.startActivity(myacc);
+                break;
+
+            case R.id.map:
+                Intent mymap = new Intent(MapsActivity.this, MapsActivity.class);
+
+                MapsActivity.this.startActivity(mymap);
+                break;
+        }
+        return true;
+    }
 }
+

@@ -1,49 +1,92 @@
 package com.example.projetandroid;
 
+import static com.example.projetandroid.DatabaseHelper.COL_2;
+import static com.example.projetandroid.DatabaseHelper.COL_4;
+import static com.example.projetandroid.DatabaseHelper.TABLE_NAME;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.example.projetandroid.R;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Favoris extends AppCompatActivity {
+
+    private SQLiteDatabase dataBase;
+
+    //variables to hold staff records
+    private ArrayList<String> stafid = new ArrayList<String>();
+
+    private ListView userList;
+    private AlertDialog.Builder build;
+    DatabaseHelper myDb;
+    EditText editName,editSurname,editMarks ,editTextId;
+    Button btnAddData;
+    Button btnviewAll;
+    Button btnDelete;
+    Button btnviewUpdate;
     public static AbstractCollection<String> arrayList;
-    public static ArrayAdapter<Object> adapter;
     private View baseView;
-    private ListView lv;
     public static final String TAG = "MainActivity:LOG";
 //ee
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grillebis);
-        lv = findViewById(R.id.edittext);
-        arrayList = new ArrayList<String>();
+        myDb = new DatabaseHelper(this);
+        userList = (ListView) findViewById(R.id.edittext);
 
+        DatabaseHelper handler = new DatabaseHelper(this);
+        // Get access to the underlying writeable database
+        SQLiteDatabase db = handler.getWritableDatabase();
+        // Query for items from the database and get a cursor back
+        Cursor todoCursor = db.rawQuery("select rowid _id, " + COL_2 + " from " +TABLE_NAME +" where  "+ COL_4 + " = 1",null);
 
+        ListView lvItems = (ListView) findViewById(R.id.edittext);
+// Setup cursor adapter using cursor from last step
+        AdapterP todoAdapter = new AdapterP(this, todoCursor);
+// Attach cursor adapter to the ListView
+        lvItems.setAdapter(todoAdapter);
 
-
-        Context context = getApplicationContext();
-        CharSequence text = "Bonjour !!!!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast.makeText(context, text, duration).show();
+        todoAdapter.changeCursor(todoCursor);
+        todoAdapter.notifyDataSetChanged();
     }
+
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item1) {
+        switch (item1.getItemId()) {
+            case R.id.map:
+                Intent myIntent = new Intent(Favoris.this, MapsActivity.class);
+
+                Favoris.this.startActivity(myIntent);
+                break;
+
+            case R.id.acc:
+                Intent myacc = new Intent(Favoris.this, accueil.class);
+                Favoris.this.startActivity(myacc);
+                break;
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,5 +94,9 @@ public class Favoris extends AppCompatActivity {
         inflaterMenu.inflate(R.menu.monmenu, menu);
         return true;
     }
+
+
+
+
 
 }

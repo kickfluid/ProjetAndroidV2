@@ -1,44 +1,40 @@
 package com.example.projetandroid;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.projetandroid.R;
+public class AdapterP extends CursorAdapter {
+    public AdapterP(Context context, Cursor cursor) {
+        super(context, cursor, 0);
+    }
 
-import java.util.ArrayList;
-
-class AdapterP extends ArrayAdapter<String> {
-
-    private Integer[] tab_images_pour_la_liste = {
-            R.drawable.common_google_signin_btn_text_dark
-    };
-
+    // The newView method is used to inflate a new view and return it,
+    // you don't bind any data to the view at this point.
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater)
-                getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-
-        TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-
-        textView.setText(getItem(position));
-
-        if(convertView == null )
-            imageView.setImageResource(tab_images_pour_la_liste[position]);
-        else
-            rowView = (View)convertView;
-
-        return rowView;
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        return LayoutInflater.from(context).inflate(R.layout.rowlayout, parent, false);
     }
 
-    public AdapterP(Context context, ArrayList<String> values) {
-        super(context, R.layout.rowlayout, values);
+    // The bindView method is used to bind all data to a given view
+    // such as setting the text on a TextView.
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
+        // Find fields to populate in inflated template
+        TextView tvBody = (TextView) view.findViewById(R.id.txtstafid);
+        // Extract properties from cursor
+        String body = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_2));
+        // Populate fields with extracted properties
+        tvBody.setText(body);
+
+
     }
+
+
 }

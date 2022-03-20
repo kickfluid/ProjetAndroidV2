@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class accueil extends AppCompatActivity {
 
@@ -38,6 +40,18 @@ public class accueil extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflaterMenu = getMenuInflater();
         inflaterMenu.inflate(R.menu.monmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item1) {
+        switch (item1.getItemId()) {
+            case R.id.fav:
+                Intent myIntent = new Intent(accueil.this, Favoris.class);
+                accueil.this.startActivity(myIntent);
+                break;
+
+        }
         return true;
     }
 }
