@@ -14,12 +14,13 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "Favoris";
     public static final String COL_5 = "latittude";
     public static final String COL_6 = "longitude";
+    public static final String COL_7 = "desceng";
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Nom TEXT,Description TEXT,Favoris INTEGER,latittude FLOAT, longitude FLOAT)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Nom TEXT,Description TEXT,Favoris INTEGER,latittude FLOAT, longitude FLOAT, desceng TEXT)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int
@@ -45,18 +46,21 @@ class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res=db.rawQuery("select * from "+ TABLE_NAME, null);
         return res;
     }
+
     public Cursor affichageAP(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor res = db.rawQuery("SELECT "+ COL_3+ " FROM " + TABLE_NAME + " WHERE Nom = ?", new String[]{"Revel"});
+        Cursor res = db.rawQuery("SELECT "+ COL_3+ " FROM " + TABLE_NAME + " WHERE Nom = ?", new String[]{id});
         return res;
     }
 
-    public Cursor affichageFav() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res= (db.rawQuery("select  " + COL_2 + " from " +TABLE_NAME +" where  "+ COL_4 + " = 1",null));
+    public Cursor affichageAPEng(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = db.rawQuery("SELECT "+ COL_7+ " FROM " + TABLE_NAME + " WHERE Nom = ?", new String[]{id});
         return res;
     }
+
     //updating data
     public boolean updateData(String id, int fav){
         SQLiteDatabase db= this.getWritableDatabase();

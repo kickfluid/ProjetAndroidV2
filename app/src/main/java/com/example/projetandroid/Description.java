@@ -29,7 +29,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Description extends AppCompatActivity {
+public class Description extends AppCompat {
     public ArrayList<String> arrayList;
     DatabaseHelper myDb;
     ImageButton fav;
@@ -47,9 +47,19 @@ public class Description extends AppCompatActivity {
         textId = (TextView)findViewById(R.id.titredesc);
         textedesc= (TextView)findViewById(R.id.texteDEsc);
         SQLiteDatabase db = myDb.getReadableDatabase();
-        res= myDb.affichageAP(textId.getText().toString());
-        res.moveToFirst();
-        textedesc.setText(res.getString(0));
+        LanguageManager lang=new LanguageManager(this);
+
+        if (lang.getLang()=="fr") {
+            res = myDb.affichageAP(textId.getText().toString());
+            res.moveToFirst();
+            textedesc.setText(res.getString(0));
+        }
+        if(lang.getLang()=="en"){
+            res= myDb.affichageAPEng(textId.getText().toString());
+            res.moveToFirst();
+            textedesc.setText(res.getString(0));
+        }
+
 
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +113,12 @@ public class Description extends AppCompatActivity {
                 Intent mymap = new Intent(Description.this, MapsActivity.class);
 
                 Description.this.startActivity(mymap);
+                break;
+
+            case R.id.lang:
+                Intent mylang = new Intent(Description.this, Langues.class);
+
+                Description.this.startActivity(mylang);
                 break;
         }
         return true;

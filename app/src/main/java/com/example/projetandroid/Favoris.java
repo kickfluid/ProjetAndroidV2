@@ -90,7 +90,14 @@ public class Favoris extends AppCompatActivity {
                 Intent myacc = new Intent(Favoris.this, accueil.class);
                 Favoris.this.startActivity(myacc);
                 break;
+
+            case R.id.lang:
+                Intent mylang = new Intent(Favoris.this, Langues.class);
+
+                Favoris.this.startActivity(mylang);
+                break;
         }
+
         return true;
     }
 
